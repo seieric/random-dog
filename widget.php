@@ -18,7 +18,7 @@ class Random_Dog_Widget extends WP_Widget {
         parent::__construct(
             'random_dog_widget',
             'Random Dog',
-            array( 'description' => 'Show dogs randomly.' )
+            array( 'description' => 'Show dogs randomly. If you enable caching, use JavaScipt widget instead.' )
         );
     }
 
@@ -42,8 +42,43 @@ class Random_Dog_Widget extends WP_Widget {
     }
 }
 
-function register_random_dog_widget() {
-	register_widget( 'Random_Dog_Widget' );
+class Random_Dog_JS_Widget extends WP_Widget {
+    function __construct() {
+        parent::__construct(
+            'random_dog_js_widget',
+            'Random Dog(JavaScript)',
+            array( 'description' => 'Show dogs randomly. This works even if caching is enabled.' )
+        );
+    }
+
+    public function widget( $args, $instance ) {
+        $ep = RANDOM_DOG_EP;
+        echo $args['before_widget'];
+        echo <<< TAG
+<script async id="randomDogImage">fetch('{$ep}').then(r=>{return r.json();}).then(d=>{
+    const img = document.createElement('img');
+    img.src = d.message;
+    img.loading = 'lazy';
+    img.alt = 'A picture of a dog.';
+    const thisTag = document.getElementById('randomDogImage');
+    thisTag.parentNode.insertBefore(img, thisTag.nextSibling);
+}).catch(e=>{console.log(e);})</script>
+TAG;
+        echo $args['after_widget'];
+    }
+
+    public function form( $instance ) {
+        echo '<p>This widget shows dogs randomly.</p>';
+    }
+
+    public function update( $new_instance, $old_instance ) {
+        return $new_instance;
+    }
 }
 
-add_action( 'widgets_init', 'register_random_dog_widget' );
+function register_random_dog_widgets() {
+	register_widget( 'Random_Dog_Widget' );
+    register_widget( 'Random_Dog_JS_Widget' );
+}
+
+add_action( 'widgets_init', 'register_random_dog_widgets' );

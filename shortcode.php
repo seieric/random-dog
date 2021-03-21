@@ -22,4 +22,19 @@ function random_dog() {
     }
 }
 
+function random_dog_js() {
+    $ep = RANDOM_DOG_EP;
+    echo <<< TAG
+<script async id="randomDogImage">fetch('{$ep}').then(r=>{return r.json();}).then(d=>{
+    const img = document.createElement('img');
+    img.src = d.message;
+    img.loading = 'lazy';
+    img.alt = 'A picture of a dog.';
+    const thisTag = document.getElementById('randomDogImage');
+    thisTag.parentNode.insertBefore(img, thisTag.nextSibling);
+}).catch(e=>{console.log(e);})</script>
+TAG;
+}
+
 add_shortcode( 'dog', 'random_dog' );
+add_shortcode( 'dogjs', 'random_dog_js' );
