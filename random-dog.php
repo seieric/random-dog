@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Random Dog
-Plugin URI: http://URI_Of_Page_Describing_Plugin_and_Updates
+Plugin URI: https://github.com/seieric/random-dog
 Description: This plugin adds a widget and a shortcode that shows dogs randomly. Dogs are fetched from Dogs API(https://dog.ceo/dog-api/).
 Version: 1.0
 Author: seieric
