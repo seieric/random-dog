@@ -14,7 +14,7 @@
 if( !defined( 'ABSPATH' ) ) exit;
 
 function random_dog() {
-    $dog = get( RANDOM_DOG_EP );
+    $dog = random_dog_json_get( RANDOM_DOG_EP );
     if ($dog) {
         echo "<img src=\"{$dog["message"]}\" loading=\"lazy\" alt=\"A picture of a dog.\">";
     } else {

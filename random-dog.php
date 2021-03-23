@@ -25,21 +25,14 @@ if( !defined( 'ABSPATH' ) ) exit;
 
 define( 'RANDOM_DOG_EP', 'https://dog.ceo/api/breeds/image/random' );
 
-function get( string $url ) {
-    $options = [
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_TIMEOUT => 3,
-    ];
-    $curl = curl_init( $url );
-    curl_setopt_array( $curl, $options );
+function random_dog_json_get( string $url ) {
+    $res = wp_remote_get( $url );
 
-    $res = curl_exec( $curl );
-    $info = curl_getinfo( $curl );
-    $errno = curl_errno( $curl );
-    curl_close( $curl );
+    $http_code = wp_remote_retrieve_response_code( $res );
+    if ($http_code !== 200) return null;
 
-    if ($errno !== CURLE_OK || $info['http_code'] !== 200) return null;
-    return json_decode( $res, true );
+    $body = wp_remote_retrieve_body( $res );
+    return json_decode( $body, true );
 }
 
 require_once dirname( __FILE__ ) . '/shortcode.php';

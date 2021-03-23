@@ -23,7 +23,7 @@ class Random_Dog_Widget extends WP_Widget {
     }
 
     public function widget( $args, $instance ) {
-        $dog = get( RANDOM_DOG_EP );
+        $dog = random_dog_json_get( RANDOM_DOG_EP );
         echo $args['before_widget'];
         if ($dog) {
             echo "<img src=\"{$dog["message"]}\" loading=\"lazy\" alt=\"A picture of a dog.\">";
