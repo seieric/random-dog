@@ -2,10 +2,10 @@
 /*
 Plugin Name: Random Dog
 Plugin URI: https://github.com/seieric/random-dog
-Description: This plugin adds a widget and a shortcode that shows dogs randomly. Dogs are fetched from Dogs API(https://dog.ceo/dog-api/).
+Description: This plugin adds widgets and shortcodes that show dogs randomly. Dogs are fetched from Dogs API(https://dog.ceo/dog-api/).
 Version: 1.0
 Author: seieric
-Author URI: https://seieric.github.io/
+Author URI: https://about.monolithon.net
 License: GPLv2
 */
 
