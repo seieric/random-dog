@@ -54,16 +54,7 @@ class Random_Dog_JS_Widget extends WP_Widget {
     public function widget( $args, $instance ) {
         $ep = RANDOM_DOG_EP;
         echo $args['before_widget'];
-        echo <<< TAG
-<script async id="randomDogImage">fetch('{$ep}').then(r=>{return r.json();}).then(d=>{
-    const img = document.createElement('img');
-    img.src = d.message;
-    img.loading = 'lazy';
-    img.alt = 'A picture of a dog.';
-    const thisTag = document.getElementById('randomDogImage');
-    thisTag.parentNode.insertBefore(img, thisTag.nextSibling);
-}).catch(e=>{console.log(e);})</script>
-TAG;
+        echo random_dog_js_tag();
         echo $args['after_widget'];
     }
 

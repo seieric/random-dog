@@ -16,24 +16,14 @@ if( !defined( 'ABSPATH' ) ) exit;
 function random_dog() {
     $dog = random_dog_json_get( RANDOM_DOG_EP );
     if ($dog) {
-        echo "<img src=\"{$dog["message"]}\" loading=\"lazy\" alt=\"A picture of a dog.\">";
+        return "<img src=\"{$dog["message"]}\" loading=\"lazy\" alt=\"A picture of a dog.\">";
     } else {
-        echo '<p>Dogs are sleeping.</p>';
+        return '<p>Dogs are sleeping.</p>';
     }
 }
 
 function random_dog_js() {
-    $ep = RANDOM_DOG_EP;
-    echo <<< TAG
-<script async id="randomDogImage">fetch('{$ep}').then(r=>{return r.json();}).then(d=>{
-    const img = document.createElement('img');
-    img.src = d.message;
-    img.loading = 'lazy';
-    img.alt = 'A picture of a dog.';
-    const thisTag = document.getElementById('randomDogImage');
-    thisTag.parentNode.insertBefore(img, thisTag.nextSibling);
-}).catch(e=>{console.log(e);})</script>
-TAG;
+    return random_dog_js_tag();
 }
 
 add_shortcode( 'dog', 'random_dog' );

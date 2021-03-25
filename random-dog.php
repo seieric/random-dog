@@ -25,6 +25,21 @@ if( !defined( 'ABSPATH' ) ) exit;
 
 define( 'RANDOM_DOG_EP', 'https://dog.ceo/api/breeds/image/random' );
 
+function random_dog_js_tag() {
+    $ep = RANDOM_DOG_EP;
+    $tag = <<< TAG
+<script>(function() {
+const thisTag = document.currentScript;
+fetch('{$ep}').then(r=>r.json()).then(d=>{
+    const img = document.createElement('img');
+    img.src = d.message;
+    img.alt = 'A picture of a dog.';
+    thisTag.parentNode.insertBefore(img, thisTag.nextSibling);
+}).catch(e=>console.log(e))})();</script>
+TAG;
+    return $tag;
+}
+
 function random_dog_json_get( string $url ) {
     $res = wp_remote_get( $url );
 
