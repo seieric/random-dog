@@ -8,4 +8,4 @@ Stable tag: 1.0
 License: GPLv2
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
 
-This plugin adds a widget and a shortcode that shows dogs randomly. Dogs are fetched from Dogs API(https://dog.ceo/dog-api/).
+This plugin adds widgets and shortcodes that show dogs randomly. Dogs are fetched from Dogs API(https://dog.ceo/dog-api/).
